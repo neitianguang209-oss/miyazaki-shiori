@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>宮崎 2泊3日｜旅のしおり</title>
+<meta name="theme-color" content="#e0d4bc">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:      #fdf4dd;
+  --paper-edge: #f0e2c2;
+  --desk:       #ded1b6;
+  --ink:        #33291f;
+  --ink-soft:   #6d5f4d;
+  --ai:         #1f4e6b;
+  --emerald:    #1f9c81;
+  --hi:         #ef6a2e;
+  --sakura:     #e8637f;
+  --yamabuki:   #f2b024;
+
+  --r: 14px;
+  --shadow: 0 10px 24px -12px rgba(51,41,31,.45), 0 2px 4px rgba(51,41,31,.14);
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+#d1,#d2,#d3{scroll-margin-top:76px}
+body{
+  margin:0;
+  font-family:"Zen Maru Gothic", system-ui, -apple-system, "Hiragino Maru Gothic ProN", sans-serif;
+  color:var(--ink);
+  background-color:var(--desk);
+  background-image:
+    radial-gradient(circle at 12% 8%, rgba(255,255,255,.5), transparent 42%),
+    radial-gradient(circle at 88% 72%, rgba(160,140,105,.28), transparent 46%);
+  line-height:1.75;
+  padding:14px 12px 48px;
+  overflow-x:hidden;
+}
+
+.wrap{max-width:520px;margin:0 auto}
+
+.sheet{
+  position:relative;
+  background:var(--paper);
+  border-radius:var(--r);
+  box-shadow:var(--shadow);
+  padding:26px 18px 24px;
+  margin:0 0 26px;
+  border:1px solid var(--paper-edge);
+  overflow:hidden;
+}
+.sheet::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:
+    radial-gradient(circle at 84% 14%, rgba(31,156,129,.11) 0 26px, transparent 27px),
+    radial-gradient(circle at 10% 62%, rgba(242,176,36,.13) 0 34px, transparent 35px),
+    radial-gradient(circle at 92% 88%, rgba(232,99,127,.10) 0 22px, transparent 23px),
+    radial-gradient(circle at 26% 96%, rgba(31,78,107,.08) 0 30px, transparent 31px);
+}
+.sheet > *{position:relative;z-index:1}
+
+.tape{
+  position:absolute;z-index:2;width:96px;height:26px;
+  background:repeating-linear-gradient(115deg,
+     rgba(255,255,255,.5) 0 6px, rgba(255,255,255,.18) 6px 12px);
+  box-shadow:0 1px 3px rgba(51,41,31,.18);
+  opacity:.92;
+}
+.tape.tl{top:-11px;left:16px;transform:rotate(-6deg);background-color:var(--yamabuki)}
+.tape.tr{top:-11px;right:14px;transform:rotate(5deg);background-color:var(--emerald)}
+.tape.br{bottom:-11px;right:26px;transform:rotate(-4deg);background-color:var(--sakura)}
+
+.cover{text-align:center;padding:30px 18px 28px}
+.cover .eyebrow{
+  font-family:"Yusei Magic",cursive;color:var(--hi);
+  letter-spacing:.22em;font-size:.8rem;margin:0 0 6px
+}
+.cover h1{
+  font-family:"Yusei Magic",cursive;
+  font-size:clamp(2rem,10vw,2.9rem);
+  margin:0;line-height:1.2;color:var(--ai);
+}
+.cover h1 em{font-style:normal;color:var(--hi)}
+.cover .sub{margin:12px 0 0;font-size:.95rem;color:var(--ink-soft)}
+.cover .stamp{
+  display:inline-block;margin-top:16px;padding:7px 16px;
+  border:2.5px dashed var(--sakura);border-radius:999px;
+  font-family:"Yusei Magic",cursive;color:var(--sakura);
+  font-size:.9rem;transform:rotate(-2.5deg);
+}
+
+nav.days{
+  position:sticky;top:8px;z-index:20;
+  display:flex;gap:8px;margin:0 0 18px;
+}
+nav.days a{
+  flex:1;text-align:center;text-decoration:none;
+  font-family:"Yusei Magic",cursive;font-size:.82rem;
+  white-space:nowrap;
+  padding:11px 3px;border-radius:11px;
+  background:var(--paper);color:var(--ai);
+  border:2px solid var(--ai);
+  box-shadow:0 4px 0 rgba(31,78,107,.35);
+}
+nav.days a.b{color:var(--hi);border-color:var(--hi);box-shadow:0 4px 0 rgba(239,106,46,.35)}
+nav.days a.c{color:var(--emerald);border-color:var(--emerald);box-shadow:0 4px 0 rgba(31,156,129,.35)}
+nav.days a:active{transform:translateY(2px);box-shadow:0 2px 0 rgba(31,78,107,.35)}
+
+.dayhead{display:flex;align-items:baseline;gap:10px;margin:0 0 4px}
+.dayhead .num{
+  font-family:"Yusei Magic",cursive;font-size:2.15rem;line-height:1;color:var(--hi);
+}
+.dayhead .lbl{font-family:"Yusei Magic",cursive;font-size:1.15rem;color:var(--ai)}
+.dayroute{
+  font-size:.86rem;color:var(--ink-soft);margin:0 0 20px;
+  padding-bottom:14px;
+  border-bottom:3px dotted rgba(109,95,77,.42);
+}
+
+ol.tl{list-style:none;margin:0;padding:0 0 0 4px;position:relative}
+ol.tl::before{
+  content:"";position:absolute;left:15px;top:14px;bottom:14px;width:3px;
+  background:repeating-linear-gradient(to bottom,
+    rgba(109,95,77,.55) 0 5px, transparent 5px 12px);
+}
+ol.tl li{position:relative;padding:0 0 20px 40px}
+.dot{
+  position:absolute;left:6px;top:4px;width:22px;height:22px;border-radius:50%;
+  background:var(--paper);border:3px solid var(--ai);
+  display:grid;place-items:center;font-size:.62rem;
+}
+li.am   .dot{border-color:var(--yamabuki)}
+li.pm   .dot{border-color:var(--emerald)}
+li.eve  .dot{border-color:var(--hi)}
+li.stay .dot{border-color:var(--sakura);background:var(--sakura)}
+
+.time{
+  display:inline-block;font-weight:900;font-size:.86rem;letter-spacing:.02em;
+  padding:2px 10px;border-radius:8px;color:#fff;background:var(--ai);
+  font-variant-numeric:tabular-nums;
+}
+li.am   .time{background:var(--yamabuki);color:#4a3405}
+li.pm   .time{background:var(--emerald)}
+li.eve  .time{background:var(--hi)}
+li.stay .time{background:var(--sakura)}
+
+.ttl{font-family:"Yusei Magic",cursive;font-size:1.14rem;margin:6px 0 2px;color:var(--ink)}
+.ttl .ico{margin-right:4px}
+.note{margin:0;font-size:.87rem;color:var(--ink-soft)}
+.note b{color:var(--hi)}
+
+.who{
+  display:inline-block;margin:4px 0 0;font-size:.72rem;font-weight:700;
+  padding:2px 9px;border-radius:999px;
+  background:rgba(31,156,129,.14);color:#14705c;border:1.5px solid rgba(31,156,129,.5);
+}
+.who.dad{background:rgba(31,78,107,.13);color:#1f4e6b;border-color:rgba(31,78,107,.45)}
+.who.rec{background:rgba(242,176,36,.18);color:#8a6205;border-color:rgba(242,176,36,.6)}
+
+.mapbtn{
+  display:inline-flex;align-items:center;gap:5px;margin-top:8px;
+  text-decoration:none;font-size:.82rem;font-weight:700;
+  padding:6px 13px;border-radius:999px;
+  background:var(--ai);color:#fff;
+  box-shadow:0 3px 0 rgba(31,78,107,.4);
+}
+.mapbtn:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(31,78,107,.4)}
+.leave{
+  display:inline-block;margin:8px 0 0 8px;font-size:.78rem;font-weight:700;
+  padding:3px 10px;border-radius:8px;
+  background:rgba(239,106,46,.13);color:#c04c14;border:1.5px solid rgba(239,106,46,.45);
+}
+.drive{
+  margin:2px 0 0;font-size:.78rem;color:var(--ink-soft);
+  padding-left:2px;font-style:italic;
+}
+
+.free{
+  margin:6px 0 22px 44px;padding:18px 16px;
+  border:2.5px dashed rgba(232,99,127,.55);border-radius:var(--r);
+  background:rgba(255,255,255,.42);
+}
+.free h4{font-family:"Yusei Magic",cursive;margin:0 0 4px;color:var(--sakura);font-size:1.05rem}
+.free p{margin:0;font-size:.85rem;color:var(--ink-soft)}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:11px}
+.chip{
+  font-size:.8rem;font-weight:700;padding:5px 11px;border-radius:999px;
+  background:var(--paper);border:2px solid var(--yamabuki);color:var(--ink);
+}
+
+.memo h3{
+  font-family:"Yusei Magic",cursive;font-size:1.25rem;margin:0 0 12px;color:var(--ai);
+}
+.memo ul{margin:0;padding-left:1.15em;font-size:.88rem}
+.memo li{margin-bottom:7px}
+.memo li::marker{color:var(--hi)}
+
+pre#linetext{
+  white-space:pre-wrap;word-break:break-word;
+  font-family:"Zen Maru Gothic",monospace;font-size:.76rem;line-height:1.6;
+  background:rgba(255,255,255,.6);border:1px solid var(--paper-edge);
+  border-radius:10px;padding:12px;max-height:190px;overflow:auto;margin:0 0 12px;
+}
+button#copy{
+  width:100%;font-family:"Yusei Magic",cursive;font-size:1.02rem;
+  padding:13px;border-radius:12px;border:none;cursor:pointer;
+  background:var(--emerald);color:#fff;box-shadow:0 4px 0 #157161;
+}
+button#copy:active{transform:translateY(3px);box-shadow:0 1px 0 #157161}
+
+footer{text-align:center;font-size:.8rem;color:var(--ink-soft);padding:4px 0 0}
+footer .heart{color:var(--sakura)}
+
+a:focus-visible,button:focus-visible{outline:3px solid var(--sakura);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ============ 表紙 ============ -->
+  <section class="sheet cover">
+    <span class="tape tl"></span><span class="tape tr"></span>
+    <p class="eyebrow">MIYAZAKI 3 DAYS</p>
+    <h1>宮崎<em>旅行</em></h1>
+    <p class="sub">2泊3日・自家用車<br>小倉 発 ⇄ シーガイア コンドミニアム 泊</p>
+    <div class="stamp">🚗 大人5名 + 幼児1名</div>
+  </section>
+
+  <!-- ============ 日タブ ============ -->
+  <nav class="days">
+    <a href="#d1">1日目 ▸ 高千穂</a>
+    <a class="b" href="#d2">2日目 ▸ 日南海岸</a>
+    <a class="c" href="#d3">3日目 ▸ 帰路</a>
+  </nav>
+
+  <!-- ============ DAY 1 ============ -->
+  <section class="sheet" id="d1">
+    <span class="tape tl"></span>
+    <div class="dayhead"><span class="num">1</span><span class="lbl">日目・高千穂</span></div>
+    <p class="dayroute">小倉 → 高千穂 → シーガイア</p>
+
+    <ol class="tl">
+
+      <li class="am">
+        <span class="dot">🚗</span>
+        <span class="time">10:00</span>
+        <h3 class="ttl"><span class="ico">🏠</span>小倉 出発</h3>
+        <p class="note">九州道 → 高千穂へ。<b>途中2回はSAで休憩</b>を入れて、幼児のペース優先で。</p>
+        <p class="drive">▸ 高千穂まで 約3時間</p>
+      </li>
+
+      <li class="pm">
+        <span class="dot">🍜</span>
+        <span class="time">13:00</span>
+        <h3 class="ttl"><span class="ico">🥢</span>高千穂で昼食</h3>
+        <p class="note">高千穂牛・釜炒り茶・そばなど。お店は当日決めてOK。</p>
+        <p style="margin:0"><span class="leave">🚙 13:35 出発</span></p>
+      </li>
+
+      <li class="pm">
+        <span class="dot">⛩</span>
+        <span class="time">13:40</span>
+        <h3 class="ttl"><span class="ico">⛩</span>天岩戸神社</h3>
+        <p class="note">天照大神の岩戸神話の舞台。参道が涼しくて歩きやすい。</p>
+        <span class="who">📷 ひかるが行きたい場所</span><br>
+        <a class="mapbtn" target="_blank" rel="noopener"
+           href="https://maps.google.com/?q=%E5%A4%A9%E5%B2%A9%E6%88%B8%E7%A5%9E%E7%A4%BE">📍 地図をひらく</a>
+        <p style="margin:0"><span class="leave">🚙 14:15 出発</span></p>
+        <p class="drive">▸ 高千穂駅まで 約15分</p>
+      </li>
+
+      <li class="pm">
+        <span class="dot">🚃</span>
+        <span class="time">14:30</span>
+        <h3 class="ttl"><span class="ico">🚃</span>高千穂駅（あまてらす鉄道）</h3>
+        <p class="note">レトロな駅舎とグランド・スーパーカート。幼児が喜びそう。</p>
+        <span class="who">📷 ひかるが行きたい場所</span><br>
+        <a class="mapbtn" target="_blank" rel="noopener"
+           href="https://maps.google.com/?q=%E9%AB%98%E5%8D%83%E7%A9%82%E9%A7%85%20%E3%81%82%E3%81%BE%E3%81%A6%E3%82%89%E3%81%99%E9%89%84%E9%81%93">📍 地図をひらく</a>
+        <p style="margin:0"><span class="leave">🚙 15:15 出発</span></p>
+        <p class="drive">▸ 高千穂峡まで 約10分</p>
+      </li>
+
+      <li class="pm">
+        <span class="dot">💧</span>
+        <span class="time">15:30</span>
+        <h3 class="ttl"><span class="ico">💧</span>高千穂峡</h3>
+        <p class="note">真名井の滝と柱状節理。<b>貸しボートは2週間前9:00からのネット予約制で即完売</b>。乗るなら早めに押さえて。遊歩道の散策だけでも十分きれい。<b>最終入場17:00</b>。</p>
+        <span class="who">📷 ひかるが行きたい場所</span><br>
+        <a class="mapbtn" target="_blank" rel="noopener"
+           href="https://maps.google.com/?q=%E9%AB%98%E5%8D%83%E7%A9%82%E5%B3%A1">📍 地図をひらく</a>
+        <p style="margin:0"><span class="leave">🚙 16:30 出発</span></p>
+        <p class="drive">▸ シーガイアまで 約2時間</p>
+      </li>
+
+      <li class="stay">
+        <span class="dot">🛏</span>
+        <span class="time">18:30</span>
+        <h3 class="ttl"><span class="ico">🏨</span>シーガイア コンドミニアム</h3>
+        <p class="note">チェックイン。荷物を置いてひと息。</p>
+        <a class="mapbtn" target="_blank" rel="noopener"
+           href="https://maps.google.com/?q=%E3%82%B7%E3%83%BC%E3%82%AC%E3%82%A4%E3%82%A2%20%E3%82%B3%E3%83%B3%E3%83%89%E3%83%9F%E3%83%8B%E3%82%A2%E3%83%A0">📍 地図をひらく</a>
+      </li>
+
+    </ol>
+
+    <div class="free">
+      <h4>🌙 19:00〜 夕食 / Free Time</h4>
+      <p>食事なしプランなので外へ。ホテル周辺 or 宮崎市街まで車で20分ほど。</p>
+      <div class="chips">
+        <span class="chip">チキン南蛮</span>
+        <span class="chip">宮崎地鶏の炭火焼</span>
+        <span class="chip">冷や汁</span>
+      </div>
+      <p style="margin-top:11px">⚠️ 幼児連れなので、座敷や個室のあるお店を事前に1軒おさえておくと安心。</p>
+    </div>
+  </section>
+
+  <!-- ============ DAY 2 ============ -->
+  <section class="sheet" id="d2">
+    <span class="tape tr"></span>
+    <div class="dayhead"><span class="num">2</span><span class="lbl">日目・日南海岸</span></div>
+    <p class="dayroute">青島 → 日南 → 都井岬 → シーガイア</p>
+
+    <ol class="tl">
+
+      <li class="am">
+        <span class="dot">🚗</span>
+        <span class="time">9:00</span>
+        <h3 class="ttl"><span class="ico">🌅</span>シーガイア 出発</h3>
+        <p class="note">今日は海沿いを南へずっと下る一日。</p>
+        <p class="drive">▸ 青島まで 約30分</p>
+      </li>
+
+      <li class="am">
+        <span class="dot">⛩</span>
+        <span class="time">9:30</span>
+        <h3 class="ttl"><span class="ico">🏝</span>青島神社</h3>
+        <p class="note">鬼の洗濯板に囲まれた島の神社。橋を渡って参拝。</p>
+        <span class="who">📷 ひかるが行きたい場所</span><br>
+        <a class="mapbtn" target="_blank" rel="noopener"
+           href="https://maps.google.com/?q=%E9%9D%92%E5%B3%B6%E7%A5%9E%E7%A4%BE">📍 地図をひらく</a>
+        <p style="margin:0"><span class="leave">🚙 10:20 出発</span></p>
+        <p class="drive">▸ 堀切峠まで 約10分</p>
+      </li>
+
+      <li class="am">
+        <span class="dot">🌊</span>
+        <span class="time">10:30</span>
+        <h3 class="ttl"><span class="ico">🌊</span>堀切峠</h3>
+        <p class="note">日南海岸を見下ろす展望スポット。道の駅フェニックスで休憩もできる。</p>
+        <span class="who">📷 ひかるが行きたい場所</span><br>
+        <a class="mapbtn" target="_blank" rel="noopener"
+           href="https://maps.google.com/?q=%E5%A0%80%E5%88%87%E5%B3%A0">📍 地図をひらく</a>
+      </li>
+
+      <li class="pm">
+        <span class="dot">🍽</span>
+        <span class="time">12:00</span>
+        <h3 class="ttl"><span class="ico">🥢</span>昼食</h3>
+        <p class="note">日南方面へ移動しながら。海沿いに食事処あり。</p>
+        <p style="margin:0"><span class="leave">🚙 13:00 出発</span></p>
+      </li>
+
+      <li class="pm">
+        <span class="dot">🗿</span>
+        <span class="time">13:30</span>
+        <h3 class="ttl"><span class="ico">🗿</span>サンメッセ日南</h3>
+        <p class="note">海を背にした7体のモアイ像。<b>水曜定休・最終入場17:00</b>。</p>
+        <span class="who">📷 ひかるが行きたい場所</span><br>
+        <a class="mapbtn" target="_blank" rel="noopener"
+           href="https://maps.google.com/?q=%E3%82%B5%E3%83%B3%E3%83%A1%E3%83%83%E3%82%BB%E6%97%A5%E5%8D%97">📍 地図をひらく</a>
+        <p style="margin:0"><span class="leave">🚙 14:20 出発</span></p>
+        <p class="drive">▸ 鵜戸神宮まで 約5分</p>
+      </li>
+
+      <li class="pm">
+        <span class="dot">⛩</span>
+        <span class="time">14:30</span>
+        <h3 class="ttl"><span class="ico">⛩</span>鵜戸神宮 <span style="font-size:.8rem;color:var(--sakura)">（行けたらでOK）</span></h3>
+        <p class="note">崖の洞窟の中にある本殿。<b>階段が多いので幼児連れは相談して</b>。時間が押してたらスキップでOK。</p>
+        <span class="who">📷 ひかるが行きたい場所</span><br>
+        <a class="mapbtn" target="_blank" rel="noopener"
+           href="https://maps.google.com/?q=%E9%B5%9C%E6%88%B8%E7%A5%9E%E5%AE%AE">📍 地図をひらく</a>
+        <p style="margin:0"><span class="leave">🚙 14:55 出発</span></p>
+        <p class="drive">▸ 飫肥城跡まで 約35分</p>
+      </li>
+
+      <li class="pm">
+        <span class="dot">🏯</span>
+        <span class="time">15:30</span>
+        <h3 class="ttl"><span class="ico">🏯</span>飫肥城跡</h3>
+        <p class="note">杉木立の城下町。散策しやすく平坦。<b>施設の入場は16:30まで</b>。</p>
+        <span class="who dad">👨 お父さん希望</span><br>
+        <a class="mapbtn" target="_blank" rel="noopener"
+           href="https://maps.google.com/?q=%E9%A3%AB%E8%82%A5%E5%9F%8E%E8%B7%A1">📍 地図をひらく</a>
+        <p style="margin:0"><span class="leave">🚙 16:00 出発</span></p>
+        <p class="drive">▸ 都井岬まで 約1時間15分</p>
+      </li>
+
+      <li class="eve">
+        <span class="dot">🐴</span>
+        <span class="time">17:00</span>
+        <h3 class="ttl"><span class="ico">🐴</span>都井岬</h3>
+        <p class="note">野生馬「御崎馬」が草原を歩く岬。夕暮れの光がきれい。<b>ゲートは17:30まで・入場は車1台400円</b>。馬には近づきすぎないこと。</p>
+        <span class="who">📷 ひかるが行きたい場所</span><br>
+        <a class="mapbtn" target="_blank" rel="noopener"
+           href="https://maps.google.com/?q=%E9%83%BD%E4%BA%95%E5%B2%AC">📍 地図をひらく</a>
+        <p style="margin:0"><span class="leave">🚙 18:00 出発</span></p>
+        <p class="drive">▸ シーガイアまで 約2時間</p>
+      </li>
+
+    </ol>
+
+    <div class="free">
+      <h4>🌙 19:30頃〜 夕食 / Free Time</h4>
+      <p>ホテル着が遅くなるので、帰り道の宮崎市街で食べて帰るのがラク。</p>
+      <div class="chips">
+        <span class="chip">宮崎牛</span>
+        <span class="chip">日南のカツオ</span>
+        <span class="chip">マンゴースイーツ</span>
+      </div>
+      <p style="margin-top:11px">⚠️ 都井岬は日が落ちると真っ暗な山道。ライト点灯と安全運転で。</p>
+    </div>
+  </section>
+
+  <!-- ============ DAY 3 ============ -->
+  <section class="sheet" id="d3">
+    <span class="tape tr"></span><span class="tape br"></span>
+    <div class="dayhead"><span class="num">3</span><span class="lbl">日目・帰路</span></div>
+    <p class="dayroute">シーガイア → 馬ヶ背 → 小倉</p>
+
+    <ol class="tl">
+
+      <li class="am">
+        <span class="dot">🧳</span>
+        <span class="time">〜8:30</span>
+        <h3 class="ttl"><span class="ico">🌅</span>朝食 → チェックアウト</h3>
+        <p class="note">荷物を積んで出発。今日は長い移動日。</p>
+        <p class="drive">▸ 馬ヶ背まで 約1時間</p>
+      </li>
+
+      <li class="am">
+        <span class="dot">🌊</span>
+        <span class="time">9:30</span>
+        <h3 class="ttl"><span class="ico">🌊</span>馬ヶ背（日向岬）</h3>
+        <p class="note">日本最大級の柱状節理の断崖。駐車場から展望台まで徒歩10分ほど。休憩がてらの寄り道スポット。</p>
+        <span class="who rec">💡（仮）変更OK</span><br>
+        <a class="mapbtn" target="_blank" rel="noopener"
+           href="https://maps.google.com/?q=%E9%A6%AC%E3%83%B6%E8%83%8C%20%E6%97%A5%E5%90%91%E5%B8%82">📍 地図をひらく</a>
+        <p style="margin:0"><span class="leave">🚙 10:15 出発</span></p>
+        <p class="drive">▸ 小倉まで 約4時間</p>
+      </li>
+
+      <li class="pm">
+        <span class="dot">🚗</span>
+        <span class="time">10:15</span>
+        <h3 class="ttl"><span class="ico">🚗</span>小倉へ出発</h3>
+        <p class="note">東九州道 → 九州道。<b>途中で昼食＆休憩を1〜2回</b>。</p>
+        <p class="drive">▸ 小倉まで 約4時間（休憩込みで4.5時間見込み）</p>
+      </li>
+
+      <li class="eve">
+        <span class="dot">🏁</span>
+        <span class="time">15:00</span>
+        <h3 class="ttl"><span class="ico">🏠</span>小倉 着</h3>
+        <p class="note">目標の17:00まで<b>約2時間の余裕</b>。渋滞があっても間に合う設計。</p>
+        <a class="mapbtn" target="_blank" rel="noopener"
+           href="https://maps.google.com/?q=%E5%B0%8F%E5%80%89%E9%A7%85">📍 地図をひらく</a>
+      </li>
+
+      <li class="eve">
+        <span class="dot">🚄</span>
+        <span class="time">17:50</span>
+        <h3 class="ttl"><span class="ico">🚄</span>小倉駅 新幹線</h3>
+        <p class="note">おつかれさま！おみやげは小倉駅でも買えるよ。</p>
+      </li>
+
+    </ol>
+  </section>
+
+  <!-- ============ 持ち物・メモ ============ -->
+  <section class="sheet memo">
+    <span class="tape tl"></span>
+    <h3>🎒 持ち物 &amp; メモ</h3>
+    <ul>
+      <li><b>高千穂峡のボート予約</b> — 乗るなら2週間前の9:00にネット予約。10分で埋まるので要注意</li>
+      <li><b>歩きやすい靴</b> — 鵜戸神宮・馬ヶ背は階段と坂が多い</li>
+      <li><b>幼児の休憩グッズ</b> — 長距離移動が2日あるので、おやつ・お気に入りのもの・着替えを手元に</li>
+      <li><b>現金</b> — 都井岬の入場料（車1台400円）など、小銭が要る場面あり</li>
+      <li><b>日焼け・虫よけ</b> — 海沿いと草原が多い行程</li>
+      <li><b>ETCカード</b> — 高速の利用が長いので忘れずに</li>
+    </ul>
+  </section>
+
+  <!-- ============ LINE用（コピーボタン付き） ============ -->
+  <section class="sheet memo">
+    <span class="tape br"></span>
+    <h3>💬 LINEにそのまま貼る</h3>
+    <pre id="linetext">🌴宮崎旅行 2泊3日🌴
+小倉発 自家用車／シーガイア泊
+
+━━━━━━━━━━
+【1日目】高千穂
+━━━━━━━━━━
+🚗10:00 小倉出発（高千穂まで約3h）
+🥢13:00 高千穂で昼食
+⛩13:40 天岩戸神社
+https://maps.google.com/?q=%E5%A4%A9%E5%B2%A9%E6%88%B8%E7%A5%9E%E7%A4%BE
+🚃14:30 高千穂駅（あまてらす鉄道）
+https://maps.google.com/?q=%E9%AB%98%E5%8D%83%E7%A9%82%E9%A7%85%20%E3%81%82%E3%81%BE%E3%81%A6%E3%82%89%E3%81%99%E9%89%84%E9%81%93
+💧15:30 高千穂峡
+https://maps.google.com/?q=%E9%AB%98%E5%8D%83%E7%A9%82%E5%B3%A1
+🚗16:30 シーガイアへ（約2h）
+🏨18:30 チェックイン
+🌙19:00〜 夕食（自由）
+
+⚠️高千穂峡のボートは2週間前9:00からのネット予約。すぐ埋まるので乗るなら要手配
+
+━━━━━━━━━━
+【2日目】日南海岸
+━━━━━━━━━━
+🚗9:00 シーガイア出発
+🏝9:30 青島神社
+https://maps.google.com/?q=%E9%9D%92%E5%B3%B6%E7%A5%9E%E7%A4%BE
+🌊10:30 堀切峠
+https://maps.google.com/?q=%E5%A0%80%E5%88%87%E5%B3%A0
+🥢12:00 昼食
+🗿13:30 サンメッセ日南
+https://maps.google.com/?q=%E3%82%B5%E3%83%B3%E3%83%A1%E3%83%83%E3%82%BB%E6%97%A5%E5%8D%97
+⛩14:30 鵜戸神宮（行けたらでOK）
+https://maps.google.com/?q=%E9%B5%9C%E6%88%B8%E7%A5%9E%E5%AE%AE
+🏯15:30 飫肥城跡
+https://maps.google.com/?q=%E9%A3%AB%E8%82%A5%E5%9F%8E%E8%B7%A1
+🐴17:00 都井岬
+https://maps.google.com/?q=%E9%83%BD%E4%BA%95%E5%B2%AC
+🌙19:30頃〜 夕食（自由）
+
+⚠️サンメッセ日南は水曜定休
+⚠️都井岬はゲート17:30まで／入場400円（車1台）
+⚠️帰りは暗い山道、安全運転で
+
+━━━━━━━━━━
+【3日目】帰路
+━━━━━━━━━━
+🧳8:30 チェックアウト・出発
+🌊9:30 馬ヶ背（日向岬）で休憩
+https://maps.google.com/?q=%E9%A6%AC%E3%83%B6%E8%83%8C%20%E6%97%A5%E5%90%91%E5%B8%82
+🚗10:15 小倉へ出発（約4h）
+🏁15:00 小倉着
+🚄17:50 新幹線
+
+⚠️新幹線まで約2時間の余裕あり
+
+━━━━━━━━━━
+🎒持ち物
+歩きやすい靴／幼児のおやつ・着替え／現金（都井岬400円）／日焼け・虫よけ／ETCカード</pre>
+    <button id="copy" type="button">📋 テキストをコピー</button>
+  </section>
+
+  <footer>いってらっしゃい <span class="heart">♥</span></footer>
+</div>
+
+<script>
+document.querySelectorAll('nav.days a').forEach(function(a){
+  a.addEventListener('click', function(e){
+    e.preventDefault();
+    var el = document.querySelector(this.getAttribute('href'));
+    if(!el) return;
+    var y = el.getBoundingClientRect().top + window.pageYOffset - 76;
+    window.scrollTo({top:y, behavior:'smooth'});
+  });
+});
+document.getElementById('copy').addEventListener('click', async function(){
+  var txt = document.getElementById('linetext').textContent;
+  var btn = this;
+  try{
+    await navigator.clipboard.writeText(txt);
+    btn.textContent = '✅ コピーしました！';
+  }catch(e){
+    var r = document.createRange();
+    r.selectNodeContents(document.getElementById('linetext'));
+    var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+    btn.textContent = '選択したので長押しでコピーしてね';
+  }
+  setTimeout(function(){ btn.textContent = '📋 テキストをコピー'; }, 2600);
+});
+</script>
+</body>
+</html>
