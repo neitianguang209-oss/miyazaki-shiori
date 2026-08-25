@@ -169,6 +169,8 @@ li.stay .time{background:var(--sakura)}
   box-shadow:0 3px 0 rgba(31,78,107,.4);
 }
 .mapbtn:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(31,78,107,.4)}
+.mapbtn.boat{background:var(--hi);box-shadow:0 3px 0 rgba(239,106,46,.4);margin-left:6px}
+.mapbtn.boat:active{box-shadow:0 1px 0 rgba(239,106,46,.4)}
 .leave{
   display:inline-block;margin:8px 0 0 8px;font-size:.78rem;font-weight:700;
   padding:3px 10px;border-radius:8px;
@@ -199,18 +201,22 @@ li.stay .time{background:var(--sakura)}
 .memo li{margin-bottom:7px}
 .memo li::marker{color:var(--hi)}
 
-pre#linetext{
-  white-space:pre-wrap;word-break:break-word;
-  font-family:"Zen Maru Gothic",monospace;font-size:.76rem;line-height:1.6;
+textarea#memo-text{
+  width:100%;box-sizing:border-box;display:block;
+  font-family:"Zen Maru Gothic",sans-serif;font-size:.88rem;line-height:1.6;
   background:rgba(255,255,255,.6);border:1px solid var(--paper-edge);
-  border-radius:10px;padding:12px;max-height:190px;overflow:auto;margin:0 0 12px;
+  border-radius:10px;padding:12px;resize:vertical;color:var(--ink);
 }
-button#copy{
-  width:100%;font-family:"Yusei Magic",cursive;font-size:1.02rem;
-  padding:13px;border-radius:12px;border:none;cursor:pointer;
+textarea#memo-text:focus-visible{outline:2px solid var(--sakura);outline-offset:2px}
+.memo-actions{display:flex;align-items:center;gap:10px;margin-top:10px}
+button#memo-save{
+  font-family:"Yusei Magic",cursive;font-size:.94rem;
+  padding:10px 20px;border-radius:12px;border:none;cursor:pointer;
   background:var(--emerald);color:#fff;box-shadow:0 4px 0 #157161;
 }
-button#copy:active{transform:translateY(3px);box-shadow:0 1px 0 #157161}
+button#memo-save:active{transform:translateY(3px);box-shadow:0 1px 0 #157161}
+button#memo-save:disabled{opacity:.6;cursor:default}
+#memo-status{font-size:.78rem;color:var(--ink-soft)}
 
 footer{text-align:center;font-size:.8rem;color:var(--ink-soft);padding:4px 0 0}
 footer .heart{color:var(--sakura)}
@@ -294,6 +300,8 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--sakura);outline-off
         <span class="who">📷 ひかるが行きたい場所</span><br>
         <a class="mapbtn" target="_blank" rel="noopener"
            href="https://maps.google.com/?q=%E9%AB%98%E5%8D%83%E7%A9%82%E5%B3%A1">📍 地図をひらく</a>
+        <a class="mapbtn boat" target="_blank" rel="noopener"
+           href="https://takachiho-kanko.info/boat/">🚤 ボート予約サイト</a>
         <p style="margin:0"><span class="leave">🚙 16:30 出発</span></p>
         <p class="drive">▸ シーガイアまで 約2時間</p>
       </li>
@@ -491,76 +499,22 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--sakura);outline-off
     <ul>
       <li><b>高千穂峡のボート予約</b> — 乗るなら2週間前の9:00にネット予約。10分で埋まるので要注意</li>
       <li><b>歩きやすい靴</b> — 鵜戸神宮・馬ヶ背は階段と坂が多い</li>
-      <li><b>幼児の休憩グッズ</b> — 長距離移動が2日あるので、おやつ・お気に入りのもの・着替えを手元に</li>
       <li><b>現金</b> — 都井岬の入場料（車1台400円）など、小銭が要る場面あり</li>
       <li><b>日焼け・虫よけ</b> — 海沿いと草原が多い行程</li>
       <li><b>ETCカード</b> — 高速の利用が長いので忘れずに</li>
     </ul>
   </section>
 
-  <!-- ============ LINE用（コピーボタン付き） ============ -->
-  <section class="sheet memo">
+  <!-- ============ みんなのメモ（共有・書き込み可） ============ -->
+  <section class="sheet memo" id="shared-memo">
     <span class="tape br"></span>
-    <h3>💬 LINEにそのまま貼る</h3>
-    <pre id="linetext">🌴宮崎旅行 2泊3日🌴
-小倉発 自家用車／シーガイア泊
-
-━━━━━━━━━━
-【1日目】高千穂
-━━━━━━━━━━
-🚗10:00 小倉出発（高千穂まで約3h）
-🥢13:00 高千穂で昼食
-⛩13:40 天岩戸神社
-https://maps.google.com/?q=%E5%A4%A9%E5%B2%A9%E6%88%B8%E7%A5%9E%E7%A4%BE
-🚃14:30 高千穂駅（あまてらす鉄道）
-https://maps.google.com/?q=%E9%AB%98%E5%8D%83%E7%A9%82%E9%A7%85%20%E3%81%82%E3%81%BE%E3%81%A6%E3%82%89%E3%81%99%E9%89%84%E9%81%93
-💧15:30 高千穂峡
-https://maps.google.com/?q=%E9%AB%98%E5%8D%83%E7%A9%82%E5%B3%A1
-🚗16:30 シーガイアへ（約2h）
-🏨18:30 チェックイン
-🌙19:00〜 夕食（自由）
-
-⚠️高千穂峡のボートは2週間前9:00からのネット予約。すぐ埋まるので乗るなら要手配
-
-━━━━━━━━━━
-【2日目】日南海岸
-━━━━━━━━━━
-🚗9:00 シーガイア出発
-🏝9:30 青島神社
-https://maps.google.com/?q=%E9%9D%92%E5%B3%B6%E7%A5%9E%E7%A4%BE
-🌊10:30 堀切峠
-https://maps.google.com/?q=%E5%A0%80%E5%88%87%E5%B3%A0
-🥢12:00 昼食
-🗿13:30 サンメッセ日南
-https://maps.google.com/?q=%E3%82%B5%E3%83%B3%E3%83%A1%E3%83%83%E3%82%BB%E6%97%A5%E5%8D%97
-⛩14:30 鵜戸神宮（行けたらでOK）
-https://maps.google.com/?q=%E9%B5%9C%E6%88%B8%E7%A5%9E%E5%AE%AE
-🏯15:30 飫肥城跡
-https://maps.google.com/?q=%E9%A3%AB%E8%82%A5%E5%9F%8E%E8%B7%A1
-🐴17:00 都井岬
-https://maps.google.com/?q=%E9%83%BD%E4%BA%95%E5%B2%AC
-🌙19:30頃〜 夕食（自由）
-
-⚠️サンメッセ日南は水曜定休
-⚠️都井岬はゲート17:30まで／入場400円（車1台）
-⚠️帰りは暗い山道、安全運転で
-
-━━━━━━━━━━
-【3日目】帰路
-━━━━━━━━━━
-🧳8:30 チェックアウト・出発
-🌊9:30 馬ヶ背（日向岬）で休憩
-https://maps.google.com/?q=%E9%A6%AC%E3%83%B6%E8%83%8C%20%E6%97%A5%E5%90%91%E5%B8%82
-🚗10:15 小倉へ出発（約4h）
-🏁15:00 小倉着
-🚄17:50 新幹線
-
-⚠️新幹線まで約2時間の余裕あり
-
-━━━━━━━━━━
-🎒持ち物
-歩きやすい靴／幼児のおやつ・着替え／現金（都井岬400円）／日焼け・虫よけ／ETCカード</pre>
-    <button id="copy" type="button">📋 テキストをコピー</button>
+    <h3>📝 みんなのメモ</h3>
+    <p style="margin:0 0 10px;font-size:.8rem;color:var(--ink-soft)">誰でも書き込めます。保存すると、どの端末・ブラウザで開いても同じ内容が表示されます。</p>
+    <textarea id="memo-text" rows="6" placeholder="気づいたこと、予定の変更、買い出しメモなど自由にどうぞ…"></textarea>
+    <div class="memo-actions">
+      <button id="memo-save" type="button">💾 保存</button>
+      <span id="memo-status"></span>
+    </div>
   </section>
 
   <footer>いってらっしゃい <span class="heart">♥</span></footer>
@@ -576,20 +530,58 @@ document.querySelectorAll('nav.days a').forEach(function(a){
     window.scrollTo({top:y, behavior:'smooth'});
   });
 });
-document.getElementById('copy').addEventListener('click', async function(){
-  var txt = document.getElementById('linetext').textContent;
-  var btn = this;
-  try{
-    await navigator.clipboard.writeText(txt);
-    btn.textContent = '✅ コピーしました！';
-  }catch(e){
-    var r = document.createRange();
-    r.selectNodeContents(document.getElementById('linetext'));
-    var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
-    btn.textContent = '選択したので長押しでコピーしてね';
+</script>
+<script type="module">
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+
+const supabase = createClient(
+  'https://gzayrjlhruhvklsidraw.supabase.co',
+  'sb_publishable_-sNQxpwsU7JxhPF9S2vn5A_-CCTqQZL'
+);
+
+const textarea = document.getElementById('memo-text');
+const saveBtn = document.getElementById('memo-save');
+const status = document.getElementById('memo-status');
+
+function applyRemoteContent(content){
+  if(document.activeElement !== textarea){
+    textarea.value = content || '';
   }
-  setTimeout(function(){ btn.textContent = '📋 テキストをコピー'; }, 2600);
-});
+}
+
+async function loadMemo(){
+  const { data, error } = await supabase
+    .from('miyazaki_shiori_memo')
+    .select('content')
+    .eq('id', 1)
+    .single();
+  if(!error && data){
+    applyRemoteContent(data.content);
+  }
+}
+
+async function saveMemo(){
+  saveBtn.disabled = true;
+  status.textContent = '保存中…';
+  const { error } = await supabase
+    .from('miyazaki_shiori_memo')
+    .update({ content: textarea.value, updated_at: new Date().toISOString() })
+    .eq('id', 1);
+  saveBtn.disabled = false;
+  status.textContent = error ? '⚠️ 保存に失敗しました' : '✅ 保存しました';
+  setTimeout(function(){ status.textContent = ''; }, 2500);
+}
+
+saveBtn.addEventListener('click', saveMemo);
+
+loadMemo();
+
+supabase
+  .channel('miyazaki-memo-changes')
+  .on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'miyazaki_shiori_memo' }, function(payload){
+    applyRemoteContent(payload.new.content);
+  })
+  .subscribe();
 </script>
 </body>
 </html>
